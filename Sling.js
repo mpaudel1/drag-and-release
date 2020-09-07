@@ -1,20 +1,27 @@
-class Chain{
-    constructor(bodyA, bodyB){
+class Sling{
+    constructor(bodyA, pointB){
         var options = {
             bodyA: bodyA,
-            bodyB: bodyB,
-            stiffness: 0.04,
+            pointB: pointB,
+            stiffness: 0.02,
             length: 10
         }
+        this.pointB = pointB;
         this.chain = Constraint.create(options);
         World.add(world, this.chain);
     }
 
+    fly() {
+        this.chain.bodyA = null;
+    }
+
     display(){
+        if (this.chain.bodyA){
         var pointA = this.chain.bodyA.position;
-        var pointB = this.chain.bodyB.position;
+        var pointB = this.pointB;
         strokeWeight(4);
         line(pointA.x, pointA.y, pointB.x, pointB.y);
+        }
     }
     
 }
